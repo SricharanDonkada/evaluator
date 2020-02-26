@@ -1,0 +1,39 @@
+.container-div {
+    width: 100%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+textarea {
+    height: 400px;
+    width: 70%;
+}
+
+.run-button {
+    background-color: rgb(67, 190, 67);
+    color: white;
+    margin: 1%;
+    width: 85px;
+}
+
+.output-console {
+    margin-top: 2%;
+    margin-left: 15%;
+    padding-left: 1%;
+    padding-top: 1%;
+    background-color: #3f3f3f;
+    color: white;
+    width: 70%;
+    height: 150px;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.console-error {
+    color: rgb(253, 17, 17);
+}
+
+.progress-bar {
+    margin: 1% auto;
+    width: 70%;
+}

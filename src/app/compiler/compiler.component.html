@@ -1,0 +1,14 @@
+<div class="container-div">
+    <h1>Compiler</h1>
+    <div>
+        <form [formGroup]="codeForm">
+            <textarea formControlName="code"></textarea>
+        </form>
+        <div class="button-container">
+            <mat-progress-bar *ngIf="progressBar" mode="indeterminate" class="progress-bar"></mat-progress-bar>
+            <button mat-raised-button class="run-button" (click)="compile()" [disabled]="progressBar">Run</button>
+        </div>
+        <div class="output-console" [class]="error?'output-console console-error':'output-console'" [innerHTML]='consoleData'>
+        </div>
+    </div>
+</div>

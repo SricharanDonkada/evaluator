@@ -1,0 +1,107 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 20% 78%;
+    grid-gap: 10px;
+    background-color: white;
+    height: 100%;
+}
+
+.menu-container {
+    border-right: 2px solid rgb(189, 189, 189);
+    background-color: rgb(245, 245, 245);
+    overflow-y: auto;
+}
+
+.plus-logo {
+    width: 30px;
+    height: 100%;
+    margin: 1% auto;
+}
+
+.add-button {
+    margin: 0% auto;
+}
+
+.add-button-container {
+    width: 100%;
+}
+
+.add-level-button {
+    width: 100%;
+    text-align: center;
+    margin-top: 3%;
+}
+
+.master-container {
+    width: 100%;
+    overflow-y: auto;
+}
+
+.landing-page {
+    width: 100%;
+    text-align: center;
+}
+
+.landing-page-headder {
+    font-size: 3.0em;
+    margin: 20%;
+}
+
+.edit-question-form-container {
+    width: 90%;
+    margin: 5% auto;
+}
+
+.edit-question-form {
+    width: 100%;
+}
+
+.edit-question-textarea {
+    width: 100%;
+    margin-top: 2%;
+}
+
+.form-side-headder {
+    font-size: 1.4em;
+    margin-top: 2%;
+}
+
+.test-case-container {
+    display: grid;
+    grid-template-columns: 40% 40% 1%;
+    width: 100%;
+}
+
+.add-test-case-button {
+    margin: 2% auto;
+}
+
+.delete-button-icon {
+    width: 20px;
+    height: 100%;
+}
+
+.edit-case-form-field {
+    width: 90%;
+}
+
+.save-edit-button {
+    background-color: rgb(0, 192, 0);
+    color: white;
+    margin: 2% auto;
+}
+
+.save-button-container {
+    width: 100%;
+    text-align: center;
+}
+
+.new-level-container {
+    width: 70%;
+    text-align: center;
+    margin: 1% auto;
+}
+
+.mat-progress-spinner {
+    margin: 50% auto;
+}

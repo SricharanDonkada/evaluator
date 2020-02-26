@@ -1,0 +1,6 @@
+@import '~@angular/material/theming.scss';
+@include mat-core();
+$evaluator-app-primary: mat-palette($mat-green);
+$evaluator-app-accent: mat-palette($mat-indigo);
+$evaluator-app-theme: mat-light-theme($evaluator-app-primary, $evaluator-app-accent);
+@include mat-progress-bar-theme($evaluator-app-theme);

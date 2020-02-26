@@ -1,0 +1,113 @@
+.container-div {
+    width: 100%;
+    /* text-align: center; */
+    margin-top: 2%;
+}
+
+.master-container {
+    overflow-y: auto;
+    text-align: center;
+}
+
+textarea {
+    height: 400px;
+    width: 90%;
+    margin: 1% auto;
+}
+
+.evaluate-button {
+    background-color: rgb(67, 190, 67);
+    color: white;
+    margin: 1%;
+    width: 85px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 1% auto;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.question-container {
+    text-align: left;
+    font-size: 1.3em;
+    width: 90%;
+    margin: 2% auto;
+}
+
+.passed-container {
+    font-style: italic;
+    color: green;
+    margin-left: 1%;
+}
+
+.failed-container {
+    font-style: italic;
+    color: red;
+    margin-left: 1%;
+}
+
+.private-cases-container {
+    margin: 2% auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 20% 78%;
+    grid-gap: 10px;
+    background-color: white;
+    height: 100%;
+}
+
+.menu-container {
+    border-right: 2px solid rgb(189, 189, 189);
+    background-color: rgb(245, 245, 245);
+    font-size: 1.5em;
+}
+
+.list-item {
+    width: 100%;
+    height: 100%;
+    padding-left: 1%;
+    background-color: white;
+    margin: 0;
+}
+
+.list-item:hover {
+    color: rgb(95, 95, 250);
+}
+
+mat-panel-title {
+    font-size: 1.3em;
+}
+
+.evaluate-progress-bar {
+    width: 90%;
+    margin: 1% auto;
+}
+
+.landing-page {
+    margin: 10% auto;
+    text-align: center;
+}
+
+.codemirror {
+    font-size: 15px;
+    text-align: left;
+    margin: 1% auto;
+}
+
+.mat-progress-spinner {
+    margin: 50% auto;
+}
+
+.mat-progress-spinner-content {
+    margin: 1% auto;
+}

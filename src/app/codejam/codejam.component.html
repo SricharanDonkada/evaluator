@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="side-panel" *ngIf="questions != []">
+        <button mat-button class="question-list-button" *ngFor="let question of questions; index as i" [class.selected-button]="i == currentQuestion" (click)="selectQuestion(i)"> {{ question.name }} </button>
+    </div>
+    <div *ngIf="currentQuestion != -1" class="evaluator-container">
+        <div class="question-master-container">
+            <div class="question-container">
+                <h2 class="question-header"> {{questions[currentQuestion].name}} </h2>
+                <p class="question-content-container"> {{questions[currentQuestion].question}} </p>
+            </div>
+        </div>
+        <form [formGroup]="codeForm">
+            <div>
+                <ngx-codemirror formControlName="code" class="codemirror" style="height: 500px;" [options]="{
+                    lineNumbers: true,
+                    theme: 'material',
+mode: 'text/x-csrc',
+autofocus:true
+}"></ngx-codemirror>
+            </div>
+        </form>
+        <div class="evaluate-button-container">
+            <button mat-raised-button class="evaluate-button" (click)="evaluate()">Evaluate</button>
+            <button mat-raised-button class="save-button">Save</button>
+        </div>
+        <div class="table-container" *ngIf="questions != []">
+            <table>
+                <tr>
+                    <th>
+                        Input
+                    </th>
+                    <th>
+                        Expected output
+                    </th>
+                    <th>
+                        Actual output
+                    </th>
+                </tr>
+                <tr *ngFor="let data of questions[currentQuestion].public">
+                    <td> {{data.input}} </td>
+                    <td> {{data.output}} </td>
+                    <td> {{data.userOutput}} <span class="passed-container" *ngIf="data.userOutput && data.output == data.userOutput"> PASSED </span><span class="failed-container" *ngIf="data.userOutput && !(data.output == data.userOutput)"> FAILED </span>                        </td>
+                </tr>
+            </table>
+            <div class="private-cases-main-container">
+                <span *ngIf="passedPrivateCases != -1" class="private-cases-container"> {{ passedPrivateCases }} out of {{ questions[currentQuestion].private.length }} hidden test cases passed</span>
+            </div>
+        </div>
+    </div>
+</div>

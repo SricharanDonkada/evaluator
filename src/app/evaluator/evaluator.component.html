@@ -1,0 +1,90 @@
+<div class="grid-container">
+    <div class="menu-container">
+        <div class="mat-progress-spinner" *ngIf="progressSpinner">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <mat-accordion *ngIf="questionIndex != null">
+            <mat-expansion-panel *ngFor="let level of questionIndex">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{level.title}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{level.description}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <a mat-list-item *ngFor="let question of level.questions; let i = index" (click)="fetchQuestionData(question.id)"> Question {{i+1}} </a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <a href="http://31.220.48.238:1020/admin"> Goto to admin panel</a>
+        </mat-accordion>
+
+
+
+    </div>
+
+
+
+
+
+
+    <div class="master-container">
+        <!-- <mat-progress-bar *ngIf="!isContentFetched" mode="indeterminate" class="progress-bar" style="width: 60%; margin:35% auto;"></mat-progress-bar> -->
+        <div *ngIf="!isContentFetched">
+            <mat-spinner style="margin: 15% auto;"></mat-spinner>
+        </div>
+        <div class="landing-page" *ngIf="landingPage">
+            <h1>
+                Evaluator (Demo Version)
+            </h1>
+            <h2 style="max-width: 80%;margin: auto;text-align: left;">
+                Selet any question from the menu to solve. For demo, you will be logged into a demo account by default, when you hit evaluate, the code you write will be saved. This is basic version of this app, we are developing new features. Currently we are supporting
+                only C language.
+            </h2>
+        </div>
+        <div class="container-div" *ngIf="isContentFetched && !landingPage">
+            <h1>Practice Arena</h1>
+            <div>
+                <div class="question-container">
+                    {{ currentQuestionData.question }}
+                </div>
+                <form [formGroup]="codeForm">
+                    <ngx-codemirror class="codemirror" style="height: 500px;" formControlName="code" [options]="{
+    lineNumbers: true,
+    theme: 'material',
+    mode: 'text/x-csrc',
+    autofocus:true
+  }"></ngx-codemirror>
+                </form>
+                <mat-progress-bar mode="indeterminate" class="evaluate-progress-bar" *ngIf="evaluateProgressBar"></mat-progress-bar>
+                <div class="button-container">
+                    <button mat-raised-button class="evaluate-button" [disabled]="evaluateProgressBar" (click)="evaluate()">Evaluate</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>
+                            Input
+                        </th>
+                        <th>
+                            Expected output
+                        </th>
+                        <th>
+                            Actual output
+                        </th>
+                    </tr>
+                    <tr *ngFor="let data of currentQuestionData.public">
+                        <td> {{data.input}} </td>
+                        <td> {{data.output}} </td>
+                        <td> {{data.userOutput}} <span class="passed-container" *ngIf="data.userOutput && data.output == data.userOutput"> PASSED </span><span class="failed-container" *ngIf="data.userOutput && !(data.output == data.userOutput)"> FAILED </span>                            </td>
+                    </tr>
+                </table>
+                <span *ngIf="privateCases != -1" class="private-cases-container"> {{ privateCases }} out of {{ currentQuestionData.private.length }} hidden test cases passed</span>
+            </div>
+        </div>
+    </div>
+
+</div>

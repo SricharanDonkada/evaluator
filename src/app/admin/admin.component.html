@@ -1,0 +1,106 @@
+<div class="grid-container">
+    <div class="menu-container">
+        <div class="mat-progress-spinner" *ngIf="progressSpinner">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <mat-accordion *ngIf="questionIndex != null">
+            <mat-expansion-panel *ngFor="let level of questionIndex;let i = index">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{level.title}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{level.description}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <a mat-list-item *ngFor="let question of level.questions;let i = index" (click)="fetchQuestionData(question.id)"> Question {{i+1}} </a>
+                    <div class="add-button-container">
+                        <button mat-button (click)="addQuestion(i)" class="add-button"><img src="assets/plus.png" class="plus-logo"></button>
+                    </div>
+                </mat-nav-list>
+
+            </mat-expansion-panel>
+            <button mat-raised-button class="add-level-button" (click)="addNewLevel()">Add a New Level</button>
+        </mat-accordion>
+    </div>
+
+
+    <div class="master-container">
+
+        <div class="landing-page" *ngIf="containerMode == 'landing-page'">
+            <h1 class="landing-page-headder">Welcome To Admin Panel</h1>
+        </div>
+
+        <div *ngIf="containerMode == 'edit-question'" class="edit-question">
+            <div class="edit-question-form-container">
+                <div *ngIf="editQuestionSpinner">
+                    <mat-spinner style="margin: 15% auto;"></mat-spinner>
+                </div>
+                <form class="edit-question-form" *ngIf="editQuestionFormModel != null && !editQuestionSpinner" [formGroup]="editQuestionFormModel">
+                    <div class="form-side-headder">Question</div>
+                    <mat-form-field class="edit-question-textarea">
+                        <textarea matInput [formControl]="questionForEdit" placeholder="Enter the question here"></textarea>
+                    </mat-form-field>
+                    <div class="form-side-headder">Public test cases</div>
+                    <div>
+                        <div class="test-case-container" *ngFor="let group of publicForEdit.controls;let i = index">
+                            <div>
+                                <mat-form-field class="edit-case-form-field">
+                                    <input [formControl]="publicForEdit.controls[i].get('input')" matInput placeholder="input">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="edit-case-form-field">
+                                    <textarea [formControl]="publicForEdit.controls[i].get('output')" matInput placeholder="output"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-button (click)="deletePublicTestCase(i)"><img src="assets/delete-button.png" class="delete-button-icon"></button>
+                            </div>
+                        </div>
+                        <button mat-raised-button (click)="addPublicTestCase()" color="primary" class="add-test-case-button">Add a test case</button>
+                    </div>
+                    <div class="form-side-headder">Hidden test cases</div>
+                    <div>
+                        <div class="test-case-container" *ngFor="let group of privateForEdit.controls;let i = index">
+                            <div>
+                                <mat-form-field class="edit-case-form-field">
+                                    <input [formControl]="privateForEdit.controls[i].get('input')" matInput placeholder="input">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="edit-case-form-field">
+                                    <textarea [formControl]="privateForEdit.controls[i].get('output')" matInput placeholder="output"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-button (click)="deletePrivateTestCase(i)"><img src="assets/delete-button.png" class="delete-button-icon"></button>
+                            </div>
+                        </div>
+                        <button mat-raised-button (click)="addPrivateTestCase()" color="primary" class="add-test-case-button">Add a test case</button>
+                    </div>
+                    <div class="save-button-container">
+                        <button mat-raised-button (click)="saveEditedQuestion()" class="save-edit-button">Save</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="new-level-container" *ngIf="containerMode == 'new-level'">
+            <h1>Create New Level</h1>
+            <form [formGroup]="addNewLevelFormModel">
+                <mat-form-field class="edit-case-form-field">
+                    <input [formControl]="addNewLevelFormModel.get('title')" matInput placeholder="Title">
+                </mat-form-field>
+                <mat-form-field class="edit-case-form-field">
+                    <textarea [formControl]="addNewLevelFormModel.get('description')" matInput placeholder="Description"></textarea>
+                </mat-form-field>
+            </form>
+            <button mat-raised-button (click)="submitNewLevelFormData()" color="primary">Submit</button>
+        </div>
+
+    </div>
+</div>
